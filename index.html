@@ -1,260 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For Pov Meas ❤️</title>
-  <style>
-    :root {
-      --bg1: #ffe4ec;
-      --bg2: #ffd6e7;
-      --pink: #ff4f87;
-      --pink-dark: #d81b60;
-      --soft: #fff6fa;
-      --white: #ffffff;
-      --green: #4caf50;
-      --red: #ff5a5f;
-      --shadow: 0 12px 30px rgba(216, 27, 96, 0.15);
-    }
-    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    body {
-      margin: 0; min-height: 100vh; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow-x: hidden; background: linear-gradient(135deg, var(--bg1), var(--bg2));
-      display: flex; align-items: center; justify-content: center; position: relative; color: #333;
-    }
-    .glow1, .glow2, .glow3 { position: fixed; border-radius: 50%; filter: blur(80px); opacity: 0.35; z-index: 0; animation: pulse 8s ease-in-out infinite; }
-    .glow1 { width: 250px; height: 250px; background: #ff80ab; top: 5%; left: -50px; }
-    .glow2 { width: 280px; height: 280px; background: #ffb3c7; bottom: 10%; right: -70px; animation-delay: 2s; }
-    .glow3 { width: 220px; height: 220px; background: #ffc1d6; top: 45%; left: 50%; transform: translateX(-50%); animation-delay: 4s; }
-    @keyframes pulse { 0%,100%{transform:scale(1);}50%{transform:scale(1.12);} }
-    .heart { position: fixed; bottom: -30px; color: rgba(255,79,135,0.25); font-size:20px; animation: floatUp linear forwards; pointer-events:none; z-index:0; }
-    @keyframes floatUp { 0%{transform:translateY(0) scale(1) rotate(0deg);opacity:0;} 15%{opacity:1;} 100%{transform:translateY(-110vh) scale(1.4) rotate(360deg);opacity:0;} }
-    .card { position: relative; z-index:2; width:min(92vw,430px); background: rgba(255,255,255,0.78); backdrop-filter: blur(12px); border:1px solid rgba(255,255,255,0.5); border-radius:30px; box-shadow:var(--shadow); padding:28px 20px 26px; text-align:center; animation: fadeUp 0.8s ease; }
-    @keyframes fadeUp { from{opacity:0; transform:translateY(25px) scale(0.96);} to{opacity:1; transform:translateY(0) scale(1);} }
-    h1 { margin:0 0 14px; color:var(--pink-dark); font-size:clamp(24px,5vw,32px); line-height:1.35; }
-    .name { display:block; font-size:clamp(34px,8vw,42px); font-weight:800; margin-top:8px; font-style:italic; color:var(--pink); text-shadow:0 4px 12px rgba(255,79,135,0.2); }
-    .subtitle { color:#7b5a67; font-size:15px; margin-bottom:18px; }
-    .gif-box { background: linear-gradient(180deg, #fff, #fff8fb); border-radius:24px; padding:12px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.6); margin-bottom:18px; }
-    .gif-box img { width:100%; max-width:250px; height:240px; object-fit:contain; border-radius:18px; display:block; margin:auto; }
-    .buttons { display:flex; gap:14px; justify-content:center; align-items:center; flex-wrap:wrap; min-height:72px; margin-top:10px; }
-    button { border:none; border-radius:999px; cursor:pointer; font-weight:700; transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.25s ease; }
-    button:active { transform:scale(0.96); }
-    #yesBtn { background: linear-gradient(135deg, #4caf50, #67d66d); color:white; padding:15px 30px; font-size:18px; box-shadow:0 10px 20px rgba(76,175,80,0.25); animation:breathe 2.2s ease-in-out infinite; }
-    #yesBtn:hover { transform: translateY(-2px) scale(1.03); }
-    #noBtn { background: linear-gradient(135deg, #ff6b7d, #ff4f87); color:white; padding:13px 24px; font-size:16px; box-shadow:0 10px 20px rgba(255,79,135,0.22); max-width:100%; }
-    @keyframes breathe { 0%,100%{transform:scale(1);}50%{transform:scale(1.04);} }
-    .top-actions { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:14px; }
-    .small-btn { background: rgba(255,255,255,0.8); color: var(--pink-dark); padding:10px 16px; border-radius:999px; font-size:14px; font-weight:700; box-shadow:0 6px 16px rgba(216,27,96,0.08); }
-    .small-btn:hover { transform: translateY(-2px); }
-    .hidden { display:none !important; }
-    .celebration h2 { color:var(--pink-dark); font-size:clamp(26px,6vw,34px); margin-bottom:10px; }
-    .celebration p { color:#7b5a67; font-size:17px; margin-bottom:16px; line-height:1.6; }
-    .love-note { background: linear-gradient(180deg, #fff9fc, #fff); border-radius:24px; padding:20px 18px; text-align:left; box-shadow: inset 0 0 0 1px rgba(255,192,203,0.22); max-height:58vh; overflow-y:auto; }
-    .love-note h3 { text-align:center; color:var(--pink-dark); margin-top:0; margin-bottom:14px; font-size:24px; }
-    .love-note p { color:#5e4a52; font-size:16px; line-height:1.9; margin:0 0 12px; }
-    .footer { position: fixed; bottom:14px; left:0; width:100%; text-align:center; font-size:12px; color:rgba(90,65,75,0.7); z-index:1; padding:0 10px; }
-    .khmer-font { font-weight:bold; color:var(--pink-dark); }
-    audio { display:none; }
-    @media (max-width:480px){
-      .card { padding:22px 16px 22px; border-radius:26px; }
-      .gif-box img { height:220px; }
-      .buttons { gap:12px; }
-      #yesBtn { font-size:17px; padding:14px 26px; }
-      #noBtn { font-size:15px; padding:12px 20px; }
-      .small-btn { font-size:13px; padding:9px 14px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moon Love Galaxy FINAL</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    background: radial-gradient(circle, #1a1a2e, #000);
+    opacity: 0;
+    transition: opacity 2s ease;
+    height: 100vh;
+}
+
+canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+}
+
+#title {
+    position: absolute;
+    top: 15px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 28px;
+    text-shadow: 0 0 20px #fff;
+}
+
+#messageBox {
+    position: absolute;
+    bottom: 80px;
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    color: #fff;
+    text-shadow: 0 0 20px pink;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+#credit {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: #aaa;
+    font-size: 14px;
+    font-family: "Khmer OS Siemreap", "Noto Sans Khmer", sans-serif;
+}
+</style>
 </head>
+
 <body>
 
-  <div class="glow1"></div>
-  <div class="glow2"></div>
-  <div class="glow3"></div>
+<div id="title">For You 🌙💛</div>
+<div id="messageBox"></div>
+<div id="credit">
+Developed by Sophorn Vipor<br>
+សុភ័ណ្ឌ វីប៉
+</div>
 
-  <!-- QUIZ PAGE -->
-  <div id="quizCard" class="card">
-    <div class="top-actions">
-      <button class="small-btn" id="musicBtn">🎵 Play Music</button>
-      <button class="small-btn" id="letterBtn">💌 Open Letter</button>
-    </div>
+<audio id="music" loop>
+<source src="https://files.catbox.moe/v57tvx.mp3">
+</audio>
 
-    <h1>
-      Will you be my Valentine,
-      <span class="name">Pov Meas? ❤️</span>
-    </h1>
+<script type="importmap">
+{
+ "imports": {
+  "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+ }
+}
+</script>
 
-    <p class="subtitle">I made this little website just for you 🥺💗</p>
+<script type="module">
+import * as THREE from 'three';
 
-    <div class="gif-box">
-      <img id="gif" src="https://media.tenor.com/kFxWdKGFsJgAAAAi/bubu-dudu-sseeyall.gif" alt="cute gif">
-    </div>
+const scene = new THREE.Scene();
 
-    <div class="buttons">
-      <button id="yesBtn">Yes 💗</button>
-      <button id="noBtn">No 😔</button>
-    </div>
-  </div>
+// CAMERA
+const camera = new THREE.PerspectiveCamera(70, innerWidth/innerHeight, 0.1, 1000);
+let distance = 40;
+camera.position.set(0, 15, distance);
 
-  <!-- CELEBRATION PAGE -->
-  <div id="celebrationCard" class="card celebration hidden">
-    <div class="top-actions">
-      <button class="small-btn" id="musicBtn2">🎵 Music</button>
-      <button class="small-btn" id="letterBtn2">💌 Open Letter</button>
-    </div>
+// RENDERER
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(innerWidth, innerHeight);
+document.body.appendChild(renderer.domElement);
 
-    <h2>B dg tha o eng ng yes hai 😍🤍</h2>
-    <p>
-      You just made my heart the happiest one alive 💞<br>
-      I love you so much, <b>Pov Meas</b>.
-    </p>
+// FADE IN
+window.onload = () => document.body.style.opacity = 1;
 
-    <div class="gif-box">
-      <img src="https://media.tenor.com/wq4QtW7t0GgAAAAi/bubu-dudu-sseeyall.gif" alt="happy gif">
-    </div>
-  </div>
+// MUSIC
+document.body.addEventListener("click", () => {
+    document.getElementById("music").play();
+}, { once: true });
 
-  <!-- LETTER PAGE -->
-  <div id="letterCard" class="card hidden">
-    <div class="top-actions">
-      <button class="small-btn" id="backBtn">⬅ Back</button>
-      <button class="small-btn" id="musicBtn3">🎵 Music</button>
-    </div>
+// LIGHT
+scene.add(new THREE.AmbientLight(0xffffff, 1.2));
+const moonLight = new THREE.PointLight(0xffffff, 3, 300);
+moonLight.position.set(0, 0, 0);
+scene.add(moonLight);
 
-    <div class="love-note">
-      <h3>💌 To My Love, Pov Meas</h3>
-      <p>From the moment I met you, everything felt softer, warmer, and more beautiful.</p>
-      <p>You make my ordinary days feel special, and even the smallest moments with you mean so much to me.</p>
-      <p>Sometimes I don’t know the perfect words, but if there is one thing I know for sure, it’s this: <b>I really, really love you.</b></p>
-      <p>Thank you for existing, for smiling, for being cute, and for being someone my heart keeps choosing.</p>
-      <p>No matter what happens, you will always have a very special place in my heart. 💗</p>
-      <p style="text-align:right; margin-top:18px;">Love,<br><b>Sophorn Vipor</b> 🤍</p>
-    </div>
-  </div>
+// MOON 🌙
+const loader = new THREE.TextureLoader();
+const moon = new THREE.Mesh(
+    new THREE.SphereGeometry(5, 64, 64),
+    new THREE.MeshStandardMaterial({
+        map: loader.load('https://threejs.org/examples/textures/planets/moon_1024.jpg'),
+        emissive: 0xaaaaaa,
+        emissiveIntensity: 0.6
+    })
+);
+scene.add(moon);
 
-  <div class="footer">
-    Developed by <span class="khmer-font">សុភ័ណ្ឌ វីប៉</span> / <span>Sophorn Vipor</span>
-  </div>
+// glow
+const glow = new THREE.Mesh(
+    new THREE.SphereGeometry(6, 64, 64),
+    new THREE.MeshBasicMaterial({
+        color: 0xaaaaaa,
+        transparent: true,
+        opacity: 0.15
+    })
+);
+scene.add(glow);
 
-  <!-- AUDIO FILES -->
-  <audio id="bgMusic" loop>
-    <source src="https://files.catbox.moe/v57tvx.mp3" type="audio/mpeg">
-  </audio>
+// STICKERS
+const urls = [
+"https://media.tenor.com/hMGhBiDHz00AAAAi/tkthao219-bubududu.gif",
+"https://media.tenor.com/3fPxcvIy-KIAAAAi/bubu-dudu-sseeyall.gif",
+"https://media.tenor.com/_1nOJP-be_UAAAAi/tkthao219-bubududu.gif",
+"https://media.tenor.com/mbsKdEmx9V0AAAAi/bubu-cute-bubu-adorable.gif"
+];
 
-  <audio id="catSound">
-    <source src="https://files.catbox.moe/v57tvx.mp3" type="audio/mpeg"> <!-- replace with real cat sound mp3 -->
-  </audio>
+const textures = urls.map(u => loader.load(u));
+const texts = [
+"Pov meas",
+"Snp jit",
+"My Princessss",
+"Krob Pich",
+"Besdong"
+];
 
-  <script>
-    const yesBtn = document.getElementById('yesBtn');
-    const noBtn = document.getElementById('noBtn');
-    const gif = document.getElementById('gif');
+// ✨ BEAUTIFUL TEXT
+function createText(text) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1024;
+    canvas.height = 256;
+    const ctx = canvas.getContext('2d');
 
-    const quizCard = document.getElementById('quizCard');
-    const celebrationCard = document.getElementById('celebrationCard');
-    const letterCard = document.getElementById('letterCard');
+    const gradient = ctx.createLinearGradient(0, 0, 1024, 0);
+    gradient.addColorStop(0, "#ff9a9e");
+    gradient.addColorStop(1, "#fad0c4");
 
-    const letterBtn = document.getElementById('letterBtn');
-    const letterBtn2 = document.getElementById('letterBtn2');
-    const backBtn = document.getElementById('backBtn');
+    ctx.fillStyle = gradient;
+    ctx.shadowColor = "#ff69b4";
+    ctx.shadowBlur = 40;
+    ctx.font = "bold 80px Arial";
+    ctx.textAlign = "center";
+    ctx.fillText(text, 512, 150);
 
-    const music = document.getElementById('bgMusic');
-    const catSound = document.getElementById('catSound');
+    const texture = new THREE.CanvasTexture(canvas);
+    const mat = new THREE.SpriteMaterial({ map: texture, transparent: true });
+    const sprite = new THREE.Sprite(mat);
+    sprite.userData = { baseY: -2, offset: Math.random() * Math.PI * 2 };
+    return sprite;
+}
 
-    const musicBtn = document.getElementById('musicBtn');
-    const musicBtn2 = document.getElementById('musicBtn2');
-    const musicBtn3 = document.getElementById('musicBtn3');
+// CREATE ANIMATED STICKERS
+const objects = [];
+for (let i = 0; i < 50; i++) {
+    const sprite = new THREE.Sprite(
+        new THREE.SpriteMaterial({
+            map: textures[i % textures.length],
+            transparent: true
+        })
+    );
 
-    const phrases = [
-      "No 😔", "Are you sure? 🥺", "B yum lov aii ort yes ng 😭",
-      "Really sure?? 💔", "Pookie please... 🥹", "Don't do this to me 😭",
-      "I'm gonna cry for real 😭", "You're breaking my heart 💔"
-    ];
+    const r = 18 + Math.random() * 20;
+    const angle = Math.random() * Math.PI * 2;
+    const speed = 0.002 + Math.random() * 0.003; // random speed
+    const floatOffset = Math.random() * Math.PI * 2; // for vertical float
 
-    const sadGifs = [
-      "https://media.tenor.com/sWXhCC4A2woAAAAi/bubu-bubu-dudu.gif",
-      "https://media.tenor.com/hLgZBJ7RjzYAAAAi/cute-dog.gif",
-      "https://media1.tenor.com/m/OroVCOXbuUUAAAAC/sadhamstergirl.gif",
-      "https://media.tenor.com/lLhOcgJ4X-wAAAAi/kh%C3%B3c.gif",
-      "https://media.tenor.com/FPzGMNfFGnYAAAAi/cute-cat.gif"
-    ];
+    sprite.userData = { r, angle, speed, baseScale: 4, floatOffset };
+    sprite.scale.set(4, 4, 1);
 
-    let phraseIndex = 0;
-    let gifIndex = 0;
-    let yesScale = 1;
+    const label = createText(texts[i % texts.length]);
+    label.position.set(0, -2.2, 0);
+    label.scale.set(1.2, 1.2, 1);
 
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.innerHTML = Math.random() > 0.5 ? '❤️' : '💖';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.fontSize = (16 + Math.random() * 18) + 'px';
-      heart.style.animationDuration = (4 + Math.random() * 4) + 's';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 8000);
+    sprite.add(label);
+    scene.add(sprite);
+    objects.push(sprite);
+}
+
+// STARS
+const geo = new THREE.BufferGeometry();
+const pos = new Float32Array(1000 * 3);
+for (let i = 0; i < pos.length; i++) pos[i] = (Math.random() - 0.5) * 200;
+geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+scene.add(new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.6 })));
+
+// CAMERA CONTROL
+let isDown = false, lon = 0, lat = 0;
+addEventListener('mousedown', () => isDown = true);
+addEventListener('mouseup', () => isDown = false);
+addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    lon += e.movementX * 0.1;
+    lat -= e.movementY * 0.1;
+});
+
+// ZOOM
+addEventListener('wheel', (e) => {
+    distance += e.deltaY * 0.05;
+    distance = Math.max(15, Math.min(80, distance));
+});
+
+// WINDOW RESIZE
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// UPDATE CAMERA
+function updateCamera() {
+    const phi = THREE.MathUtils.degToRad(90 - lat);
+    const theta = THREE.MathUtils.degToRad(lon);
+    camera.position.x = distance * Math.sin(phi) * Math.cos(theta);
+    camera.position.y = distance * Math.cos(phi);
+    camera.position.z = distance * Math.sin(phi) * Math.sin(theta);
+    camera.lookAt(0,0,0);
+}
+
+// LOVE MESSAGES
+const messages = [
+"I love you 💖",
+"You are my everything ✨",
+"My princess 👑",
+"Forever with you 💞",
+"You make me happy 🌙",
+"Bong Slanh Oun💖",
+"You're my Only One😍",
+"Bong Nirk Oun 😭",
+"Can't stop Thinking about u 💖",
+"You’re my favorite person 💕",
+"Always you, my star 🌟❤️",
+"No Matter what Happened You still my fv person o 💖",
+"I don't care how long it take I'll wait 💖"
+];
+
+// CLICK
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+
+addEventListener('click', (e) => {
+    mouse.x = (e.clientX / innerWidth) * 2 - 1;
+    mouse.y = -(e.clientY / innerHeight) * 2 + 1;
+    raycaster.setFromCamera(mouse, camera);
+    const hits = raycaster.intersectObjects(objects);
+    if (hits.length > 0) {
+        const obj = hits[0].object;
+        obj.scale.multiplyScalar(1.4);
+        setTimeout(() => obj.scale.set(obj.userData.baseScale, obj.userData.baseScale, 1), 300);
+
+        const box = document.getElementById("messageBox");
+        box.innerText = messages[Math.floor(Math.random() * messages.length)];
+        box.style.opacity = 1;
     }
-    setInterval(createHeart, 500);
+});
 
-    noBtn.addEventListener('click', () => {
-      phraseIndex = (phraseIndex + 1) % phrases.length;
-      gifIndex = (gifIndex + 1) % sadGifs.length;
+// ANIMATE
+function animate() {
+    requestAnimationFrame(animate);
+    updateCamera();
+    moon.rotation.y += 0.003;
 
-      noBtn.innerText = phrases[phraseIndex];
-      gif.src = sadGifs[gifIndex];
+    const time = performance.now() * 0.002;
+    objects.forEach(o => {
+        // Orbit
+        o.userData.angle += o.userData.speed;
+        o.position.x = Math.cos(o.userData.angle) * o.userData.r;
+        o.position.z = Math.sin(o.userData.angle) * o.userData.r;
 
-      yesScale += 0.12;
-      yesBtn.style.transform = `scale(${yesScale})`;
-      yesBtn.style.boxShadow = "0 12px 24px rgba(76, 175, 80, 0.35)";
+        // Float up and down
+        o.position.y = Math.sin(time + o.userData.floatOffset) * 2;
 
-      if (yesScale > 2.1) {
-        noBtn.style.opacity = "0";
-        setTimeout(() => { noBtn.style.display = "none"; }, 250);
-      }
+        // Animate labels
+        o.children.forEach(child => {
+            child.position.y = child.userData.baseY + Math.sin(time + child.userData.offset) * 0.3;
+            child.material.opacity = 0.7 + Math.sin(time + child.userData.offset) * 0.3;
+            child.lookAt(camera.position);
+        });
     });
 
-    yesBtn.addEventListener('click', () => {
-      quizCard.classList.add('hidden');
-      celebrationCard.classList.remove('hidden');
-      document.body.style.background = "linear-gradient(135deg, #ffd1e1, #ffe7f0)";
-      catSound.play(); // Play cat sound meme once
-    });
+    renderer.render(scene, camera);
+}
 
-    function openLetter() {
-      quizCard.classList.add('hidden');
-      celebrationCard.classList.add('hidden');
-      letterCard.classList.remove('hidden');
-    }
+animate();
+</script>
 
-    function goBack() {
-      letterCard.classList.add('hidden');
-      if (!celebrationCard.classList.contains('hidden')) {
-        celebrationCard.classList.remove('hidden');
-      } else {
-        quizCard.classList.remove('hidden');
-      }
-    }
-
-    letterBtn.addEventListener('click', openLetter);
-    letterBtn2.addEventListener('click', openLetter);
-    backBtn.addEventListener('click', goBack);
-
-    function toggleMusic() {
-      if (music.paused) {
-        music.play().then(() => {
-          musicBtn.innerText = "⏸ Pause Music";
-          musicBtn2.innerText = "⏸ Music";
-          musicBtn3.innerText = "⏸ Music";
-        }).catch(() => alert("Tap again to allow music 🎵"));
-      } else {
-        music.pause();
-        musicBtn.innerText = "🎵 Play Music";
-        musicBtn2.innerText = "🎵 Music";
-        musicBtn3.innerText = "🎵 Music";
-      }
-    }
-
-    musicBtn.addEventListener('click', toggleMusic);
-    musicBtn2.addEventListener('click', toggleMusic);
-    musicBtn3.addEventListener('click', toggleMusic);
-  </script>
 </body>
 </html>
